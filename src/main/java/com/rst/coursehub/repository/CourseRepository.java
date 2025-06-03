@@ -1,12 +1,7 @@
 package com.rst.coursehub.repository;
-import java.util.List;
-import java.util.Optional;
-
 import com.rst.coursehub.entity.Course;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface CourseRepository {
+public interface CourseRepository extends JpaRepository<Course, Long> {
 
-    List<Course> findAll();
-
-    Optional<Course> findById(long courseId);
 }

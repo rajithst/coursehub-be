@@ -2,14 +2,18 @@ package com.rst.coursehub.entity;
 
 import com.rst.coursehub.common.CourseEnums;
 import jakarta.persistence.*;
+import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "courses")
+@Data
 public class Course {
 
     @Id
@@ -93,203 +97,12 @@ public class Course {
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
-    public Long getId() {
-        return id;
-    }
+    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OrderBy("sortOrder ASC")
+    private List<CourseSection> sections = new ArrayList<>();
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Review> reviews = new ArrayList<>();
 
-    public String getTitle() {
-        return title;
-    }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public User getInstructor() {
-        return instructor;
-    }
-
-    public void setInstructor(User instructor) {
-        this.instructor = instructor;
-    }
-
-    public CourseEnums.CourseLevel getLevel() {
-        return level;
-    }
-
-    public void setLevel(CourseEnums.CourseLevel level) {
-        this.level = level;
-    }
-
-    public String getLanguage() {
-        return language;
-    }
-
-    public void setLanguage(String language) {
-        this.language = language;
-    }
-
-    public BigDecimal getPrice() {
-        return price;
-    }
-
-    public void setPrice(BigDecimal price) {
-        this.price = price;
-    }
-
-    public BigDecimal getDiscountPrice() {
-        return discountPrice;
-    }
-
-    public void setDiscountPrice(BigDecimal discountPrice) {
-        this.discountPrice = discountPrice;
-    }
-
-    public String getCurrency() {
-        return currency;
-    }
-
-    public void setCurrency(String currency) {
-        this.currency = currency;
-    }
-
-    public String getThumbnail() {
-        return thumbnail;
-    }
-
-    public void setThumbnail(String thumbnail) {
-        this.thumbnail = thumbnail;
-    }
-
-    public String getPreviewVideo() {
-        return previewVideo;
-    }
-
-    public void setPreviewVideo(String previewVideo) {
-        this.previewVideo = previewVideo;
-    }
-
-    public Integer getDurationMinutes() {
-        return durationMinutes;
-    }
-
-    public void setDurationMinutes(Integer durationMinutes) {
-        this.durationMinutes = durationMinutes;
-    }
-
-    public Integer getTotalLectures() {
-        return totalLectures;
-    }
-
-    public void setTotalLectures(Integer totalLectures) {
-        this.totalLectures = totalLectures;
-    }
-
-    public CourseEnums.CourseStatus getStatus() {
-        return status;
-    }
-
-    public void setStatus(CourseEnums.CourseStatus status) {
-        this.status = status;
-    }
-
-    public Boolean getFree() {
-        return isFree;
-    }
-
-    public void setFree(Boolean free) {
-        isFree = free;
-    }
-
-    public Boolean getCertificateAvailable() {
-        return certificateAvailable;
-    }
-
-    public void setCertificateAvailable(Boolean certificateAvailable) {
-        this.certificateAvailable = certificateAvailable;
-    }
-
-    public Boolean getLifetimeAccess() {
-        return lifetimeAccess;
-    }
-
-    public void setLifetimeAccess(Boolean lifetimeAccess) {
-        this.lifetimeAccess = lifetimeAccess;
-    }
-
-    public Boolean getMobileAccess() {
-        return mobileAccess;
-    }
-
-    public void setMobileAccess(Boolean mobileAccess) {
-        this.mobileAccess = mobileAccess;
-    }
-
-    public Boolean getDownloadableResources() {
-        return downloadableResources;
-    }
-
-    public void setDownloadableResources(Boolean downloadableResources) {
-        this.downloadableResources = downloadableResources;
-    }
-
-    public BigDecimal getAverageRating() {
-        return averageRating;
-    }
-
-    public void setAverageRating(BigDecimal averageRating) {
-        this.averageRating = averageRating;
-    }
-
-    public Integer getTotalReviews() {
-        return totalReviews;
-    }
-
-    public void setTotalReviews(Integer totalReviews) {
-        this.totalReviews = totalReviews;
-    }
-
-    public Integer getTotalEnrollments() {
-        return totalEnrollments;
-    }
-
-    public void setTotalEnrollments(Integer totalEnrollments) {
-        this.totalEnrollments = totalEnrollments;
-    }
-
-    public LocalDateTime getPublishedAt() {
-        return publishedAt;
-    }
-
-    public void setPublishedAt(LocalDateTime publishedAt) {
-        this.publishedAt = publishedAt;
-    }
-
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public LocalDateTime getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(LocalDateTime updatedAt) {
-        this.updatedAt = updatedAt;
-    }
 }

@@ -9,4 +9,8 @@ public class CourseEnums {
     public enum CourseStatus {
         DRAFT, PUBLISHED, ARCHIVED
     }
+
+    public enum ContentType {
+        VIDEO, ARTICLE, QUIZ, ASSIGNMENT, RESOURCE
+    }
 }

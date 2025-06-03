@@ -9,5 +9,7 @@ public interface CourseService {
 
     List<Course> getCourses();
 
-    Optional<Course> getCourseById(int id);
+    Optional<Course> getCourseById(Long id);
+
+    Course saveCourse(Course course);
 }

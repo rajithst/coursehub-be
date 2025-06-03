@@ -4,12 +4,12 @@ import com.rst.coursehub.entity.Course;
 import com.rst.coursehub.repository.CourseRepository;
 import com.rst.coursehub.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
-@Component
+@Service
 public class CourseServiceImpl implements CourseService {
 
     private final CourseRepository courseRepository;
@@ -25,7 +25,12 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    public Optional<Course> getCourseById(int id) {
+    public Optional<Course> getCourseById(Long id) {
         return courseRepository.findById(id);
+    }
+
+    @Override
+    public Course saveCourse(Course course) {
+        return courseRepository.save(course);
     }
 }
